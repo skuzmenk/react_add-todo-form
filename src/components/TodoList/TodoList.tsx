@@ -21,10 +21,7 @@ export const TodoList = ({ todos }: Props) => {
   return (
     <section className="TodoList">
       {todos.map(todo => (
-        <TodoInfo
-          todo={todo}
-          key={todo.id}
-        />
+        <TodoInfo todo={todo} key={todo.id} />
       ))}
     </section>
   );

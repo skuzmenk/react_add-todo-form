@@ -25,7 +25,7 @@ export const App = () => {
     }
 
     const user = usersFromServer.find(
-      user => user.id === Number(userId),
+      founduser => founduser.id === Number(userId),
     );
 
     if (!user) {
@@ -51,9 +51,7 @@ export const App = () => {
 
       <form onSubmit={handleSubmit}>
         <div className="field">
-          <label htmlFor="title">
-            Title
-          </label>
+          <label htmlFor="title">Title</label>
 
           <input
             id="title"
@@ -61,58 +59,40 @@ export const App = () => {
             placeholder="Enter todo title"
             data-cy="titleInput"
             value={title}
-            onChange={(event) => {
+            onChange={event => {
               setTitle(event.target.value);
               setTitleError(false);
             }}
           />
 
-          {titleError && (
-            <span className="error">
-              Please enter a title
-            </span>
-          )}
+          {titleError && <span className="error">Please enter a title</span>}
         </div>
 
         <div className="field">
-          <label htmlFor="user">
-            User
-          </label>
+          <label htmlFor="user">User</label>
 
           <select
             id="user"
             data-cy="userSelect"
             value={userId}
-            onChange={(event) => {
+            onChange={event => {
               setUserId(event.target.value);
               setUserError(false);
             }}
           >
-            <option value="">
-              Choose a user
-            </option>
+            <option value="">Choose a user</option>
 
             {usersFromServer.map(user => (
-              <option
-                value={user.id}
-                key={user.id}
-              >
+              <option value={user.id} key={user.id}>
                 {user.name}
               </option>
             ))}
           </select>
 
-          {userError && (
-            <span className="error">
-              Please choose a user
-            </span>
-          )}
+          {userError && <span className="error">Please choose a user</span>}
         </div>
 
-        <button
-          type="submit"
-          data-cy="submitButton"
-        >
+        <button type="submit" data-cy="submitButton">
           Add
         </button>
       </form>
@@ -120,9 +100,7 @@ export const App = () => {
       <TodoList
         todos={todos.map(todo => ({
           ...todo,
-          user: usersFromServer.find(
-            user => user.id === todo.userId,
-          )!,
+          user: usersFromServer.find(user => user.id === todo.userId)!,
         }))}
       />
     </div>
